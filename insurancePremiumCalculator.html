@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Insurance Premium</title>
+    <meta charset='utf-8'>
+    
+    <script type="text/javascript">
+	var total = new Array(10);   
+  var tot=0;
+  var valid = false;
+ 
+     
+              //document.getElementById("errormessage").innerHTML = "hi";
+   
+    function calcPremium() {
+    
+    while(!valid)
+    {
+        if(document.question1form.ownership[0].checked || document.question1form.ownership[1].checked || document.question1form.ownership[2].checked )
+          {
+                total[0] = parseInt(document.question1form.ownership.value); 
+                total[1] = parseInt(document.question2form.propertyType.value);
+                total[2] = parseInt(document.question3form.yearsOld.value);
+                if(document.question4form.houseAlarm[0].checked || document.question4form.houseAlarm[1].checked || document.question4form.houseAlarm[2].checked)
+                {
+                    total[3] = parseInt(document.question4form.houseAlarm.value);
+                    if(document.question5form.smokeDetector[0].checked || document.question5form.smokeDetector[1].checked)
+                    {
+                        total[4] = parseInt(document.question5form.smokeDetector.value);
+                        total[5] = parseInt(document.question6form.location.value);
+                        total[6] = parseInt(document.question7form.claimsFree.value);
+                        if(document.question8form.buildingsCover.value == "" || document.question8form.buildingsCover.value<0 || isNaN(document.question8form.buildingsCover.value))
+                        {
+                            document.getElementById("message").innerHTML = "Invalid entry for Buildings Cover";
+                            alert("Invalid entry for Buildings Cover");
+                            break;
+                        }
+                        else 
+                        {
+                            total[7] = parseInt(document.question8form.buildingsCover.value);
+                            total[8] = parseInt(document.question9form.contentsCover.value);
+                            if(document.question10form.claimsExcess[0].checked || document.question10form.claimsExcess[1].checked || document.question10form.claimsExcess[2].checked)
+                            {
+                                  total[9] = parseInt(document.question10form.claimsExcess.value);
+                                  for(var i=0; i<total.length; i++)
+                                  {
+                                      tot += total[i];
+                                  }
+                                
+                                  z = "Own: €" + total[0] + 
+                                                    "\rType: €" + total[1] +
+                                                    "\rYears Old: €" + total[2] +
+                                                    "\rHouse Alarm: €" + total[3] +
+                                                    "\rSmoke Detectors: €" + total[4] +
+                                                    "\rLocation: €" + total[5] +
+                                                    "\rClaims Free: €" + total[6] +
+                                                    "\rBuildings Cover: €" + total[7] +
+                                                    "\rContents Cover: €" + total[8] +
+                                                    "\rClaims Excess: €" + total[9] +
+                                                    "\r\r\rTotal Premium Cost: €" + tot; 
+                                                    
+                                  
+                                  alert(tot);
+                                  break;
+                            }
+                            else
+                            {
+                                document.getElementById("message").innerHTML = "Claims Excess radio button not checked";
+                                alert("Claims Excess radio button not checked");
+                                break;
+                            }
+                        }   
+                      }
+                    else
+                    {
+                    document.getElementById("message").innerHTML = "Smoke Alarm radio button not checked";
+                    alert("Smoke Alarm radio button not checked");
+                    break;
+                    }
+        
+                }
+                else
+                {
+                document.getElementById("message").innerHTML = "House Alarm radio button not checked";
+                alert("House Alarm radio button not checked");
+                break;
+                }  
+        
+                 
+          }
+          else
+          {
+              document.getElementById("message").innerHTML = "Ownership radio button not checked";
+              alert("Ownership stufff missing");
+              break; 
+          }  
+          
+          document.getElementById("final").innerHTML = "Unsuccessful";
+          }
+    }
+  
+    </script>
+    <style type="text/css">
+ * {
+        margin: 0;
+      }
+    html, body {
+        height: 100%;
+         background: #F0F0F0;
+         font-family:  Verdana, Geneva, sans-serif;
+      }
+    .page-wrap {
+      min-height: 100%;
+      /* equal to footer height */
+        margin-bottom: -142px; 
+    }
+    .header-cont {
+    width:100%;
+    position:fixed;
+    background-color: #333;
+    top:0px;
+}
+header {
+    height:50px;
+    background:#333;
+    border:1px solid red;
+    width:960px;
+    margin:0px auto;
+    position: relative;
+    z-index: 4;
+}
+.content {
+    width:60%; 
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2% 5%;
+    background: WHITE;
+    border: 1px solid #CCC;
+    height: AUTO;
+    margin: 70px auto;
+    overflow: auto; 
+    z-index: -1;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    font-weight: bold;
+    
+}
+
+td{
+width: 15%;
+padding-top: 5%;}
+
+.home:hover {
+   border-bottom: 10px solid red;
+   }
+.news:hover {
+    border-bottom: 10px solid orange;
+}
+.contact:hover {
+    border-bottom: 10px solid green;
+}
+.about:hover {
+    border-bottom: 10px solid blue;
+}
+
+
+
+    .page-wrap:after {
+      content: "";
+      display: block;
+    }
+    .site-footer, .page-wrap:after {
+      /* .push must be the same height as footer */
+        height: 172px; 
+    }
+    .site-footer {
+      background: #333;
+    }
+      
+    .tooltip {
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 0;
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+input[type=submit] {
+height: 50px;
+width: 20%;
+margin-left: 40%;
+background-color: #333;
+color: #ccc;
+border-radius: 5PX;
+
+}
+
+input[type=submit]:hover
+{
+background-color: black;
+font-weight: bold;
+color: #ccc;
+box-shadow: 2px 2px 12px #ccc;
+} 
+
+.textboxstyle {
+border-radius: 2px;
+}   
+
+.textboxstyle:focus
+{ border: 2px solid green;
+padding-left: 8px;
+background-color: #ccc;}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+textarea:focus{
+border: 2px solid green;
+background-color: #ccc;}
+  
+    
+    </style>
+  </head>
+  <body>
+<div class="page-wrap">
+
+
+<div class="header">
+<div class="header-cont">
+        <ul>
+          <li style="padding: 14px 16px; text-transform: uppercase; color: #ccc; font-size: 1.2em;">Sayers Insurance Ltd</li>
+          <li style="margin-left: 5%;"><a class="home" href="#home">Home</a></li>
+          <li><a class="news" href="#news">News</a></li>
+          <li><a class="contact" href="#contact">Contact</a></li>
+          <li><a class="about" href="#about">About</a></li>
+        </ul>
+</div>                                                               
+</div>
+
+
+
+<div class="content">
+        
+
+        <h2 style="text-align: center;">Home Insurance Premium</H2>  
+        <img src="images.jpg" height="200" width="200" align="left">
+       <p style="color: #999999;"> <br> <br>At Sayers Insurance Ltd we aim to<br> provide you with competitive quotes<br> that won't be gotten anywhere else<br> on the insurance market. 
+        Lorem<br> ipsum dolor sit amet, consectetuer<br> adipiscing elit. Aenean commodo<br> ligula eget dolor. Aenean massa.<br> Cum sociis natoque penatibus et<br> magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. </p>
+<table width="100%">
+  <tr >
+            <form name="question1form" action="" method="get">
+       <td> Do you own the property or do you rent it from someone? </td>
+        <td><input type="radio" name="ownership" value="50"> I own it and live in it   <br>
+        <input type="radio" name="ownership" value="25"> I own it and it's a summer house <br>  
+        <input type="radio" name="ownership" value="5"> I rent it from someone           <br>
+       
+      </form> </td>
+      
+  </tr>
+  <tr>
+      <td><form name="question2form" action="" method="get">
+          Type of Property: </td>
+            <td><select class="textboxstyle" name="propertyType">
+                  <option value="100">Detatched</option>
+                  <option value="50">Semi-Detatched</option>
+                  <option value="65">Bungalow</option>
+                  <option value="40">Terraced</option>
+                  <option value="10">Apartment</option>
+            </select>
+      </form></td> 
+  </tr>
+  <tr>               
+                      <br><br>
+                      
+     <td> <form name="question3form" action="" method="get">
+          Years old:        </td>
+          <td> <select class="textboxstyle" name="yearsOld">
+                  <option value="50"> Less than 1 year </option>
+                  <option value="75">Greater than 1 year and less than 5 years</option>
+                  <option value="90">Greater than 5 years and less than 15 years</option>
+                  <option value="100">Greater than 15 years</option>
+            </select>     
+      </form>   </td>
+  </tr>
+  <tr>
+                           
+                              
+       <td><form name="question4form" action="" method="get">
+            House Alarm? <br>   </td>
+            <td><input type="radio" name="houseAlarm" value="100"> No   <br>
+            <input type="radio" name="houseAlarm" value="40"> Yes - Standard Alarm   <br>
+            <input type="radio" name="houseAlarm" value="10"> No - Monitored Alarm <br>
+      </form>  </td>
+  </tr>  
+  <tr> 
+                                
+      <td><form name="question5form" action="" method="get">
+            At least 2 smoke detectors fitted?<br>   </td>
+            <td><input type="radio" name="smokeDetector" value="50"> No   <br>
+            <input type="radio" name="smokeDetector" value="10"> Yes <br>
+      </form>  </td>
+                                
+  </tr>  
+  <tr>                            
+     <td> <form name="question6form" action="" method="get">
+          Location:                    </td>
+            <td><select  class="textboxstyle" name="location">
+                  <option value="50">Dublin</option>
+                  <option value="30">Cork, Limerick, Kerry</option>
+                  <option value="10">West of Ireland</option>
+            </select>
+      </form> </td>
+   </tr>
+   <tr>                  
+                          
+                                   
+            <td><form name="question7form" action="" method="get">
+          Claims Free:    </td>
+           <td> <select class="textboxstyle" name="claimsFree">
+                  <option value="100">1 year</option>
+                  <option value="80">2 years</option>
+                  <option value="60">3 years</option>
+                  <option value="40">4 years</option>
+                  <option value="20">5+ years</option>  
+            </select>
+      </form>  </td>
+  </tr>
+  <tr>
+                        
+                   
+                         
+       <td><form name="question8form" action="" method="get">
+           Buildings Cover: <div class="tooltip"><img name="help icon" height="40" width="40" alt="help icon" src="images.png">
+  <span class="tooltiptext">Cover for the cost of building</span>
+</div> </td><td><input class="textboxstyle" type="text" name="buildingsCover">
+          
+      </form> </td>
+      
+  </tr> 
+  <tr>                         
+                                       
+           <td> <form name="question9form" action="" method="get">
+          Contents Cover: </td>
+            <td><select class="textboxstyle" name="contentsCover">
+                  <option value="50">20,000</option>
+                  <option value="70">40,000</option>
+                  <option value="90">60,000</option>
+                  <option value="110">80,000</option>
+                  <option value="150">80,000+</option>  
+            </select>
+      </form></td>
+    </tr> 
+    <tr> 
+    <td><form name="question10form" action="" method="get">
+           Claims Excess:<br>   </td>
+            <td><input type="radio" name="claimsExcess" value="30"> €250   <br>
+            <input type="radio" name="claimsExcess" value="50"> €500 <br>
+            <input type="radio" name="claimsExcess" value="70"> €1,000 <br></td>
+      </form>
+    </tr>
+</table> 
+
+    <form name="totalCostCheck" action="" method="get"> 
+        <input type="submit" style="margin-top: 5%;" onclick="calcPremium()">
+    </form>
+    <p id="message" style="color: red; margin-top: 5%;">          </p>
+  
+  
+     <form name="totalPrem" action="" method="get"> 
+        <textarea style=" font: Verdana; margin-top: 1%;" name="finalPremium" id="final" rows="14" cols="90%"></textarea>
+    </form>
+      
+  </div>
+  
+
+   
+</div>   
+
+
+
+    
+    
+    <footer class="site-footer">
+    <ul>
+ <li><a href="#">Home</a> <br></li>
+  <li><a href="#">Contact</a> </li>
+   <li><a href="#">About</a>  </li>
+   </ul>
+   
+   <p style=" color: #ccc; text-align: center;"> Sayers Insurance Ltd 2016 &copy; </p>
+ 
+</footer>
+    
+    
+  </body>
+</html>
